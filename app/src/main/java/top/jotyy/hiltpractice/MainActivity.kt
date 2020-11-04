@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
         binding = ActivityMainBinding.inflate(
             layoutInflater
         )
@@ -38,9 +36,13 @@ class MainActivity : AppCompatActivity() {
             binding.run {
                 Picasso.get()
                     .load(user.avatarUrl)
+                    .placeholder(R.mipmap.ic_launcher_round)
                     .into(ivAvatar)
                 tvName.text = user.name
                 tvBio.text = user.bio
+                tvFollowers.text = user.followers.toString()
+                tvFollowings.text = user.following.toString()
+                tvRepositories.text = user.publicRepos.toString()
             }
         })
 
