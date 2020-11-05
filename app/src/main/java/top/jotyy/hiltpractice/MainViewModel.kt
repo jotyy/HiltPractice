@@ -33,11 +33,7 @@ class MainViewModel @ViewModelInject constructor(
 
     fun fetchUser() {
         viewModelScope.launch {
-            flow {
-                emit(State.Loading)
-                emit(userRepository.fetchUser("jotyy"))
-                emit(State.Loaded)
-            }.collect { result ->
+            userRepository.fetchUser("jotyy").collect { result ->
                 when (result) {
                     is Success -> _user.value = result.data
                     is Failure -> _error.value = result.error
